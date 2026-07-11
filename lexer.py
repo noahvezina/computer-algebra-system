@@ -10,6 +10,7 @@ class TokenType(Enum):
     NUMBER = auto()
 
     # Keywords
+    LET = auto()
     INFINITY = auto()
     PI = auto()
     EULER = auto()
@@ -20,6 +21,7 @@ class TokenType(Enum):
     COMMA = auto()
 
     # Operators
+    COLON_EQUALS = auto()
     EQUALS = auto()
     PLUS = auto()
     MINUS = auto()
@@ -74,6 +76,7 @@ class Lexer:
         """Scan for an individual token."""
         char = self._advance()
 
+        # Single character tokens
         if char == "(":
             self._addToken(TokenType.L_PAREN)
         elif char == ")":
@@ -92,12 +95,24 @@ class Lexer:
             self._addToken(TokenType.SLASH)
         elif char == "^":
             self._addToken(TokenType.CARAT)
+
+        # Two character token
+        elif char == ":":
+            if self._peek() == "=":
+                self._advance()
+                self._addToken(TokenType.COLON_EQUALS)
+
+        # Multi character tokens
         elif char.isalpha():
             self._getText()
         elif char.isdigit():
             self._getNumber()
+
+        # Whitespace
         elif char in [" ", "\t"]:
             pass
+
+        # Unrecognized token
         else:
             column = self._current_index + 1
             raise LexerException(f'Unrecognized character at column {column}: "{char}".')
@@ -157,7 +172,7 @@ class Lexer:
 
 
 if __name__ == "__main__":
-    user_input = "func(x) = 9x^2 + sqrt( 1 - (cos(x/2))^2 ) - 1.343 + PI"
+    user_input = "let func(x) := 9x^2 + sqrt( 1 - (cos(x/2))^2 ) - 1.343 + PI"
     lexer = Lexer(user_input)
     tokens = lexer.scanTokens()
     print(tokens)
