@@ -22,5 +22,5 @@ Operations are predifined functions called by name; arguments are enclosed in pa
 ```
 > sqrt(x + sin(7))
 > diff(f(x), x)
-> limit((9x^2 + 3)/x^2, 7)
+> limit((9x^2 + 3)/x^2, x, 7)
 ```
