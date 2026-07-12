@@ -11,16 +11,42 @@ This computer algebra system will be a command line REPL that allows for basic s
 
 ## Syntax
 
-Declarations are written using the 'let' keyword and ':=' operator:
+Each of line of input must either be an expression or a declaration.
+Expressions are evaluated immediately whereas declared objects can be called later on.
+Declarations are written using the 'let' keyword, the ':=' operator, and explicit typing.
+
+### A function declaration
+
+Functions use the 'fn' type hint and can be defined with one or more arguments.
+
 ```
-> let eq1 := x + 3 = 9x - 5             # An equation
-> let delta := b^2 - 4ac                # An expression
-> let f(x) := sqrt(8x - 3) - sin(x)     # A function
+> let fn f(x) := x^2 + x - 1
 ```
 
-Operations are predifined functions called by name; arguments are enclosed in parentheses:
+### An equation declaration
+
+Equations use the 'eq' type hint.
+
 ```
-> sqrt(x + sin(7))
-> diff(f(x), x)
-> limit((9x^2 + 3)/x^2, x, 7)
+> let eq example := a/b - c/d = 3a + 2b + c - d
+```
+
+### An expression declaration
+
+Expressions use the 'expr' type hint.
+
+```
+> let expr trig1 := sin(7*PI*x/4)
+```
+
+### Examples
+
+```
+> diff(3x^2 + 2x - 1)
+6x + 2
+```
+```
+> let fn population(t) = 100*EULER^(0.8t)
+> diff(population(t), t)
+80*EULER^(0.8t)
 ```

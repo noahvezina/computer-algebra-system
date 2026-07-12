@@ -11,7 +11,12 @@ class TokenType(Enum):
 
     # Keywords
     LET = auto()
+    FN = auto()
+    EQ = auto()
+    EXPR = auto()
     INFINITY = auto()
+
+    # Constants
     PI = auto()
     EULER = auto()
 
@@ -28,6 +33,7 @@ class TokenType(Enum):
     STAR = auto()
     SLASH = auto()
     CARAT = auto()
+    EXCLAMATION = auto()
 
 
 class Token:
@@ -57,12 +63,16 @@ class Lexer:
         "-": TokenType.MINUS,
         "*": TokenType.STAR,
         "/": TokenType.SLASH,
-        "^": TokenType.CARAT
+        "^": TokenType.CARAT,
+        "!": TokenType.EXCLAMATION
     }
 
     _KEYWORDS = {
         "let": TokenType.LET,
         "infinity": TokenType.INFINITY,
+        "fn": TokenType.FN,
+        "eq": TokenType.EQ,
+        "expr": TokenType.EXPR,
         "PI": TokenType.PI,
         "EULER": TokenType.EULER        
     }
