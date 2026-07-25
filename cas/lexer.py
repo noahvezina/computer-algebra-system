@@ -78,12 +78,12 @@ class Lexer:
 
         # Position indices
         self._start_of_lexeme = 0
-        self._current_index = 0
+        self._current = 0
 
     def scanTokens(self) -> list[Token]:
         """Scan user input to create a list of tokens."""
         while not self._isFinished():
-            self._start_of_lexeme = self._current_index
+            self._start_of_lexeme = self._current
             self._scanToken()
         return self._tokens
 
@@ -113,7 +113,7 @@ class Lexer:
 
         # Unrecognized token
         else:
-            column = self._current_index + 1
+            column = self._current + 1
             raise LexerException(f"Unrecognized character at column {column}: \"{char}\".")
 
     def _getText(self) -> None:
@@ -121,7 +121,7 @@ class Lexer:
         while self._peek().isalnum() or self._peek() == "_":
             self._advance()
 
-        text = self._user_input[self._start_of_lexeme : self._current_index]
+        text = self._user_input[self._start_of_lexeme : self._current]
 
         # Decide if text is a keyword or an identifier
         if text in self._KEYWORDS:
@@ -135,13 +135,13 @@ class Lexer:
         while self._peek().isdigit() or (self._peek() == "." and self._nextPeek().isdigit()):
             self._advance()
 
-        number = float(self._user_input[self._start_of_lexeme : self._current_index])
+        number = float(self._user_input[self._start_of_lexeme : self._current])
         self._addToken(TokenType.NUMBER, number)
 
     def _advance(self) -> str:
         """Read the current character, then advance the index."""
-        char = self._user_input[self._current_index]
-        self._current_index += 1
+        char = self._user_input[self._current]
+        self._current += 1
         return char
 
     def _peek(self) -> str:
@@ -149,25 +149,25 @@ class Lexer:
         if self._isFinished():
             return "\0"
         else:
-            # We can just look at _current_index because _advance() already pushes it by 1. 
-            return self._user_input[self._current_index] 
+            # We can just look at _current because _advance() already pushes it by 1. 
+            return self._user_input[self._current] 
 
     def _nextPeek(self) -> str:
         """Read the character after the next character without advancing the index."""
-        if self._current_index + 1 >= len(self._user_input):
+        if self._current + 1 >= len(self._user_input):
             return "\0"
         else:
-            return self._user_input[self._current_index + 1]
+            return self._user_input[self._current + 1]
 
     def _addToken(self, type: TokenType, value: object = None) -> None:
         """Add a token to the list of stored tokens."""
-        text = self._user_input[self._start_of_lexeme : self._current_index]
+        text = self._user_input[self._start_of_lexeme : self._current]
         token = Token(type, text, value)
         self._tokens.append(token)
 
     def _isFinished (self) -> bool:
         """Check if lexing is complete."""
-        return self._current_index >= len(self._user_input)
+        return self._current >= len(self._user_input)
 
 
 if __name__ == "__main__":
