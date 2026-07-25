@@ -11,10 +11,6 @@ class TokenType(Enum):
 
     # Keywords
     LET = auto()
-    FN = auto()
-    EQ = auto()
-    EXPR = auto()
-    INFINITY = auto()
 
     # Constants
     PI = auto()
@@ -69,12 +65,8 @@ class Lexer:
 
     _KEYWORDS = {
         "let": TokenType.LET,
-        "infinity": TokenType.INFINITY,
-        "fn": TokenType.FN,
-        "eq": TokenType.EQ,
-        "expr": TokenType.EXPR,
-        "PI": TokenType.PI,
-        "EULER": TokenType.EULER        
+        "pi": TokenType.PI,
+        "euler": TokenType.EULER        
     }
 
     def __init__(self, user_input):
@@ -110,7 +102,7 @@ class Lexer:
                 self._addToken(TokenType.COLON_EQUALS)
 
         # Multi character tokens
-        elif char.isalpha() or char == "_":
+        elif char.isalpha():
             self._getText()
         elif char.isdigit():
             self._getNumber()
@@ -173,14 +165,10 @@ class Lexer:
         token = Token(type, text, value)
         self._tokens.append(token)
 
-    def _isFinished(self) -> bool:
+    def _isFinished (self) -> bool:
         """Check if lexing is complete."""
         return self._current_index >= len(self._user_input)
 
 
 if __name__ == "__main__":
-    user_input1 = "let f(x) := 9x^2 + sqrt( 1 - (cos(x/2))^2 )"
-    user_input2 = "let equation_of_interest := ln(PI*x)"
-    lexer = Lexer(user_input2)
-    tokens = lexer.scanTokens()
-    print(tokens)
+    pass
