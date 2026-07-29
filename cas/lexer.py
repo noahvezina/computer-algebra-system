@@ -69,7 +69,7 @@ class Lexer:
         "euler": TokenType.EULER        
     }
 
-    def __init__(self, user_input):
+    def __init__(self, user_input: str) -> None:
         # Text to be lexed
         self._user_input = user_input
 
