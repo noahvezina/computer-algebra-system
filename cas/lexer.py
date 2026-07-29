@@ -49,25 +49,10 @@ class Token:
 
 class Lexer:
     """A scanner that tokenizes user input."""
-    
-    _SIMPLE_TOKENS = {
-        "(": TokenType.L_PAREN,
-        ")": TokenType.R_PAREN,
-        ",": TokenType.COMMA,
-        "=": TokenType.EQUALS,
-        "+": TokenType.PLUS,
-        "-": TokenType.MINUS,
-        "*": TokenType.STAR,
-        "/": TokenType.SLASH,
-        "^": TokenType.CARAT,
-        "!": TokenType.EXCLAMATION
-    }
 
-    _KEYWORDS = {
-        "let": TokenType.LET,
-        "pi": TokenType.PI,
-        "euler": TokenType.EULER        
-    }
+    _SIMPLE_TOKENS = {"(": TokenType.L_PAREN, ")": TokenType.R_PAREN, ",": TokenType.COMMA, "=": TokenType.EQUALS, "+": TokenType.PLUS, "-": TokenType.MINUS, "*": TokenType.STAR, "/": TokenType.SLASH, "^": TokenType.CARAT, "!": TokenType.EXCLAMATION}
+
+    _KEYWORDS = {"let": TokenType.LET, "pi": TokenType.PI, "euler": TokenType.EULER}
 
     def __init__(self, user_input: str) -> None:
         # Text to be lexed
@@ -114,7 +99,7 @@ class Lexer:
         # Unrecognized token
         else:
             column = self._current + 1
-            raise LexerException(f"Unrecognized character at column {column}: \"{char}\".")
+            raise LexerException(f'Unrecognized character at column {column}: "{char}".')
 
     def _getText(self) -> None:
         """Get text-based tokens, namely, identifiers and keywords."""
@@ -149,8 +134,8 @@ class Lexer:
         if self._isFinished():
             return "\0"
         else:
-            # We can just look at _current because _advance() already pushes it by 1. 
-            return self._user_input[self._current] 
+            # We can just look at _current because _advance() already pushes it by 1.
+            return self._user_input[self._current]
 
     def _nextPeek(self) -> str:
         """Read the character after the next character without advancing the index."""
@@ -165,7 +150,7 @@ class Lexer:
         token = Token(type, text, value)
         self._tokens.append(token)
 
-    def _isFinished (self) -> bool:
+    def _isFinished(self) -> bool:
         """Check if lexing is complete."""
         return self._current >= len(self._user_input)
 

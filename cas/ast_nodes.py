@@ -1,5 +1,6 @@
 from abc import ABC
 
+
 class Decl:
     """A reusable call-by-name expression."""
 
@@ -24,7 +25,7 @@ class Mult(Expr):
 
     def __init__(self, *factors: Expr) -> None:
         self.factors = list(factors)
-    
+
 
 class Pow(Expr):
     """A binary power operator."""
@@ -32,7 +33,7 @@ class Pow(Expr):
     def __init__(self, base: Expr, exponent: Expr) -> None:
         self.base = base
         self.exponent = exponent
-    
+
 
 class Fract(Expr):
     """A binary fraction operator."""
