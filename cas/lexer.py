@@ -43,8 +43,7 @@ class Token:
     def __repr__(self):
         if self.type in [TokenType.IDENTIFIER, TokenType.NUMBER]:
             return f"({self.type.name}: {self.text})"
-        else:
-            return f"({self.type.name})"
+        return f"({self.type.name})"
 
 
 class Lexer:
@@ -124,7 +123,7 @@ class Lexer:
         self._addToken(TokenType.NUMBER, number)
 
     def _advance(self) -> str:
-        """Read the current character, then advance the index."""
+        """Read and return the current character, while advancing the index."""
         char = self._user_input[self._current]
         self._current += 1
         return char
@@ -133,16 +132,14 @@ class Lexer:
         """Read the next character from user input without advancing the index."""
         if self._isFinished():
             return "\0"
-        else:
-            # We can just look at _current because _advance() already pushes it by 1.
-            return self._user_input[self._current]
+        # We can just look at _current because _advance() already pushes us by one index.
+        return self._user_input[self._current]
 
     def _nextPeek(self) -> str:
         """Read the character after the next character without advancing the index."""
         if self._current + 1 >= len(self._user_input):
             return "\0"
-        else:
-            return self._user_input[self._current + 1]
+        return self._user_input[self._current + 1]
 
     def _addToken(self, type: TokenType, value: object = None) -> None:
         """Add a token to the list of stored tokens."""
@@ -156,4 +153,7 @@ class Lexer:
 
 
 if __name__ == "__main__":
-    pass
+    user_input = "let gabriel_expr := 9x^2 + sqrt(x - 3) + cos(3x)"
+    lexer = Lexer(user_input)
+    tokens = lexer.scanTokens()
+    print(tokens)
