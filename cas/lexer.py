@@ -1,5 +1,6 @@
 from enum import Enum, auto
-from exceptions import LexerException
+
+from cas.exceptions import LexerException
 
 
 class TokenType(Enum):
@@ -98,7 +99,7 @@ class Lexer:
         # Unrecognized token
         else:
             column = self._current + 1
-            raise LexerException(f'Unrecognized character at column {column}: "{char}".')
+            raise LexerException(column, f'Unrecognized character "{char}"!')
 
     def _getText(self) -> None:
         """Get text-based tokens, namely, identifiers and keywords."""
@@ -153,7 +154,4 @@ class Lexer:
 
 
 if __name__ == "__main__":
-    user_input = "let gabriel_expr := 9x^2 + sqrt(x - 3) + cos(3x)"
-    lexer = Lexer(user_input)
-    tokens = lexer.scanTokens()
-    print(tokens)
+    pass
