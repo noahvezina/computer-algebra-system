@@ -39,14 +39,6 @@ class Pow(Expr):
         self.exponent = exponent
 
 
-class SavedExpr(Expr):
-    """A call-able named expression."""  
-
-    def __init__(self, name: str, expr: Expr) -> None:
-        self.name = name
-        self.expr = expr
-
-
 class Var(Expr):
     """A single-letter variable."""
 
