@@ -1,7 +1,11 @@
 from abc import ABC
 
 
-class Decl:
+class Stmt(ABC):
+    """The parent class for declarations and expressions."""
+
+
+class Decl(Stmt):
     """A reusable call-by-name expression."""
 
     def __init__(self, name: str, expr: Expr) -> None:
@@ -9,7 +13,7 @@ class Decl:
         self.expr = expr
 
 
-class Expr(ABC):
+class Expr(Stmt, ABC):
     """A base class for all things that can be in an expression."""
 
 
@@ -33,22 +37,15 @@ class Pow(Expr):
     def __init__(self, base: Expr, exponent: Expr) -> None:
         self.base = base
         self.exponent = exponent
+  
 
 
-class Fract(Expr):
-    """A binary fraction operator."""
+class Var(Expr):
+    """A named variable that stores an expression."""  
 
-    def __init__(self, numerator: Expr, denominator: Expr) -> None:
-        self.numerator = numerator
-        self.denominator = denominator
-
-
-class Fact(Expr):
-    """A unary factorial operator."""
-
-    def __init__(self, arg: Expr) -> None:
-        self.arg = arg
-
+    def __init__(self, name: str, expr: Expr) -> None:
+        self.name = name
+        self.expr = expr
 
 if __name__ == "__main__":
     pass

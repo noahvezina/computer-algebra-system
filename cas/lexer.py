@@ -30,7 +30,6 @@ class TokenType(Enum):
     STAR = auto()
     SLASH = auto()
     CARAT = auto()
-    EXCLAMATION = auto()
 
 
 class Token:
@@ -50,7 +49,7 @@ class Token:
 class Lexer:
     """A scanner that tokenizes user input."""
 
-    _SIMPLE_TOKENS = {"(": TokenType.L_PAREN, ")": TokenType.R_PAREN, ",": TokenType.COMMA, "=": TokenType.EQUALS, "+": TokenType.PLUS, "-": TokenType.MINUS, "*": TokenType.STAR, "/": TokenType.SLASH, "^": TokenType.CARAT, "!": TokenType.EXCLAMATION}
+    _SIMPLE_TOKENS = {"(": TokenType.L_PAREN, ")": TokenType.R_PAREN, ",": TokenType.COMMA, "=": TokenType.EQUALS, "+": TokenType.PLUS, "-": TokenType.MINUS, "*": TokenType.STAR, "/": TokenType.SLASH, "^": TokenType.CARAT}
 
     _KEYWORDS = {"let": TokenType.LET, "pi": TokenType.PI, "euler": TokenType.EULER}
 
