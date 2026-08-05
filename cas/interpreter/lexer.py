@@ -53,10 +53,7 @@ class Lexer:
 
     _KEYWORDS = {"let": TokenType.LET, "pi": TokenType.PI, "euler": TokenType.EULER}
 
-    def __init__(self, user_input: str) -> None:
-        # Text to be lexed
-        self._user_input = user_input
-
+    def __init__(self) -> None:
         # List of tokens
         self._tokens = []
 
@@ -64,8 +61,9 @@ class Lexer:
         self._start_of_lexeme = 0
         self._current = 0
 
-    def scanTokens(self) -> list[Token]:
+    def tokenize(self, user_input) -> list[Token]:
         """Scan user input to create a list of tokens."""
+        self._user_input = user_input
         while not self._isFinished():
             self._start_of_lexeme = self._current
             self._scanToken()
