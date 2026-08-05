@@ -42,5 +42,35 @@ class Pow(Expr):
 class Var(Expr):
     """A single-letter variable."""
 
+    def __init__(self, symbol: str) -> None:
+        self.symbol = symbol
+
+
+class Num(Expr):
+    """A number base-class for rationals and floats."""
+
+
+class Float(Num):
+    """A floating point number."""
+
+    def __init__(self, value: str) -> None:
+        self.value = float(value)
+
+
+class Rational(Num):
+    """A rational number."""
+
+    def __init__(self, numerator: str, denominator: str) -> None:
+        self.numerator = int(numerator)
+        self.denominator = int(denominator)
+
+
+class Int(Rational):
+    """An integer number."""
+
+    def __init__(self, value: str) -> None:
+        super().__init__(value, 1)
+
+
 if __name__ == "__main__":
     pass
