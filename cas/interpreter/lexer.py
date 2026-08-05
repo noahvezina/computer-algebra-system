@@ -1,5 +1,5 @@
-from cas.exceptions import LexerException
 from cas.interpreter.token import Token, TokenType
+from cas.exceptions import LexerException
 
 
 class Lexer:
