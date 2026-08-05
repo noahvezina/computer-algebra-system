@@ -37,15 +37,18 @@ class Pow(Expr):
     def __init__(self, base: Expr, exponent: Expr) -> None:
         self.base = base
         self.exponent = exponent
-  
 
 
-class Var(Expr):
-    """A named variable that stores an expression."""  
+class SavedExpr(Expr):
+    """A call-able named expression."""  
 
     def __init__(self, name: str, expr: Expr) -> None:
         self.name = name
         self.expr = expr
+
+
+class Var(Expr):
+    """A single-letter variable."""
 
 if __name__ == "__main__":
     pass

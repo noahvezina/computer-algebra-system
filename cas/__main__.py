@@ -1,7 +1,7 @@
 import cmd
 
-from cas.lexer import Lexer
-from cas.parser import Parser
+from cas.interpreter.lexer import Lexer
+from cas.interpreter.parser import Parser
 from cas.exceptions import LexerException, ParserException
 
 
