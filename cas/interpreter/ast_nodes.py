@@ -39,6 +39,14 @@ class Pow(Expr):
         self.exponent = exponent
 
 
+class Call(Expr):
+    """A function call."""
+
+    def __init__(self, name: str, args: list[Expr]) -> None:
+        self.name = name
+        self.args = args
+
+
 class Var(Expr):
     """A single-letter variable."""
 
