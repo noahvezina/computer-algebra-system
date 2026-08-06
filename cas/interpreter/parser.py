@@ -18,9 +18,6 @@ call    :=  ID "(" [ expr  { "," expr } ] ")"
 
 class Parser:
 
-    _FUNCTIONS = ["sin", "cos", "tan", "sqrt"]
-    _SAVED_EXPR = ["malaise"]
-
     def __init__(self) -> None:
         self._current = 0
 
@@ -73,10 +70,6 @@ class Parser:
         if factors:
             return Mult(expr, *factors)
         return expr
-
-    def _expandIdent(self) -> None:
-        """Given an identifier, discern between saved expressions, function calls, and variables."""
-        pass
 
     def _pow(self) -> Expr:
         """Get power expression."""
