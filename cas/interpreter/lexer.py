@@ -6,8 +6,8 @@ class Lexer:
     """A scanner that tokenizes user input."""
 
     _SIMPLE_TOKENS = {"(": TokenType.L_PAREN, ")": TokenType.R_PAREN, ",": TokenType.COMMA, "=": TokenType.EQUALS, "+": TokenType.PLUS, "-": TokenType.MINUS, "*": TokenType.STAR, "/": TokenType.SLASH, "^": TokenType.CARAT}
-
     _KEYWORDS = {"let": TokenType.LET, "pi": TokenType.PI, "euler": TokenType.EULER}
+    _SAVED_EXPR = ["malaise"]
 
     def __init__(self) -> None:
         # List of tokens
@@ -23,6 +23,7 @@ class Lexer:
         while not self._isFinished():
             self._start_of_lexeme = self._current
             self._scanToken()
+        self._rewriteIndentifiers()
         return self._tokens
 
     def _scanToken(self) -> None:
@@ -61,12 +62,18 @@ class Lexer:
 
         text = self._user_input[self._start_of_lexeme : self._current]
 
-        # Decide if text is a keyword or an identifier
-        if text in self._KEYWORDS:
-            type = self._KEYWORDS[text]
-            self._addToken(type)
-        else:
-            self._addToken(TokenType.IDENTIFIER, text)
+        # It's possible that a string contains multiple identifiers or keywords implicitly multiplied together
+        # We need to distinguish between keywords, variables, function calls, and named expressions
+        
+        # TODO
+        # TODO
+        # TODO
+        # TODO
+        # TODO
+        # TODO
+        # TODO
+        # TODO
+        # TODO
 
     def _getNumber(self) -> None:
         """Get number tokens."""
