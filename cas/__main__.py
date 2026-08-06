@@ -21,15 +21,25 @@ class ComputerAlegbraSystem(cmd.Cmd):
 
 def run(user_input):
 
-    lexer = Lexer(user_input)
-
+    lexer = Lexer()
     try:
-        tokens = lexer.scanTokens()
+        tokens = lexer.tokenize(user_input)
     except LexerException as error:
-        print(f"Error [col {error.column}]: {error.message}")
+        printError(error.column, error.message)
         return None
 
-    print(tokens)
+    parser = Parser()
+    try:
+        ast = parser.parse(tokens)
+    except ParserException as error:
+        printError(error.column, error.message)
+        return None
+
+    print("Tokens")
+
+
+def printError(column: int, message: str) -> None:
+    print(f"Error [col {column}]: {message}")
 
 
 if __name__ == "__main__":
