@@ -52,7 +52,7 @@ class Lexer:
         # Unrecognized token
         else:
             column = self._current + 1
-            raise LexerException(column, f'Unrecognized character "{char}"!')
+            raise LexerException(f'Unrecognized character "{char}"!', column)
 
     def _getText(self) -> None:
         """Get text-based tokens, namely, identifiers and keywords."""
@@ -95,10 +95,10 @@ class Lexer:
             return "\0"
         return self._user_input[self._current + 1]
 
-    def _addToken(self, type: TokenType, value: object = None) -> None:
+    def _addToken(self, type: TokenType) -> None:
         """Add a token to the list of stored tokens."""
         text = self._user_input[self._start_of_lexeme : self._current]
-        token = Token(type, text, value)
+        token = Token(type, text)
         self._tokens.append(token)
 
     def _isFinished(self) -> bool:
