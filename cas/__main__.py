@@ -48,7 +48,7 @@ class ComputerAlegbraSystem(cmd.Cmd):
         print("Tokens")
 
     def printError(message: str, column: int = -1) -> None:
-        if column:
+        if column != -1:
             print(f"Error [col {column}]: {message}")
         else:
             print(f"Error: {message}")
