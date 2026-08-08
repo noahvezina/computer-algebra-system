@@ -28,6 +28,9 @@ class TokenType(Enum):
     SLASH = auto()
     CARAT = auto()
 
+    # Invisible operator
+    IMPLICIT = auto()
+
 
 class Token:
     """A representation of an individual token."""
