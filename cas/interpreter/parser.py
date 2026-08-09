@@ -107,7 +107,7 @@ class Parser:
 
         while self._match(TokenType.PLUS, TokenType.MINUS):
             if self._previous().type == TokenType.MINUS:
-                terms.append(self._mult())  # Gotta figure out how to make this negative
+                terms.append(self._mult())  # TODO Gotta figure out how to make this negative
             else:
                 terms.append(self._mult())
 
@@ -122,7 +122,7 @@ class Parser:
 
         while self._match(TokenType.STAR, TokenType.SLASH, TokenType.IMPLICIT):
             if self._previous().type == TokenType.SLASH:
-                factors.append(self._pow())  # Gotta figure out how to make this negative
+                factors.append(self._pow())  # TODO Gotta figure out how to make this negative
             else:
                 factors.append(self._pow())
 
@@ -145,6 +145,7 @@ class Parser:
 
     def _atom(self) -> Expr:
         """Get atom (smallest) expression."""
+        # TODO implement atom
 
     def _advance(self) -> Token:
         """Return the current token, while advancing the index."""

@@ -10,7 +10,7 @@ class ComputerAlegbraSystem(cmd.Cmd):
     intro = "Computer Algebra System in Python."
     prompt = ">>> "
 
-    # Static function names (might be imported from a different file later)
+    # Static function names (TODO might be imported from a different file later)
     func_names = ["sin", "cos", "tan", "sqrt", "diff"]
 
     def __init__(self, completekey = "tab", stdin = None, stdout = None):
