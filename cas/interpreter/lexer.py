@@ -22,7 +22,6 @@ class Lexer:
         while not self._isFinished():
             self._start_of_lexeme = self._current
             self._scanToken()
-        self._rewriteIndentifiers()
         return self._tokens
 
     def _scanToken(self) -> None:
@@ -51,7 +50,7 @@ class Lexer:
 
         # Unrecognized token
         else:
-            column = self._current + 1
+            column = self._current
             raise LexerException(f'Unrecognized character "{char}"!', column)
 
     def _getText(self) -> None:
@@ -66,15 +65,13 @@ class Lexer:
             type = self._KEYWORDS[text]
             self._addToken(type)
         else:
-            self._addToken(TokenType.IDENTIFIER, text)
+            self._addToken(TokenType.IDENTIFIER)
 
     def _getNumber(self) -> None:
         """Get number tokens."""
         while self._peek().isdigit() or (self._peek() == "." and self._nextPeek().isdigit()):
             self._advance()
-
-        number = float(self._user_input[self._start_of_lexeme : self._current])
-        self._addToken(TokenType.NUMBER, number)
+        self._addToken(TokenType.NUMBER)
 
     def _advance(self) -> str:
         """Read and return the current character, while advancing the index."""
