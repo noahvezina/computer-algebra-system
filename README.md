@@ -2,12 +2,10 @@
 
 ## Description
 
-This computer algebra system will be a command line REPL that allows for basic symbolic manipulation.
+This computer algebra system isd a command line REPL that allows for basic symbolic manipulation. I implemented it mainly for learning's sake. The implementation includes:
 
-
-Implementation objectives:
+- Recursive descent parser
 - Simplification
-- Certain elementary functions
 - Differentiation
 
 ## Syntax
@@ -18,7 +16,7 @@ Later, support might be added for equation declaration and manipulation.
 
 ### Declarations
 
-A declaration assigns a name to an expression for later use. Declarations begin with the 'let' keyword, followed by a name, the ':=' assignment operator and an expression (see below). Declaration names can include one or more letters, numbers, or underscores; they must begin with a letter. 
+A declaration assigns a name to an expression for later use. Declarations begin with the 'let' keyword, followed by a name, the ':=' assignment operator, and the to-be-assigned expression. Declaration names must begin with a letter and can include letters, numbers, or underscores.
 
 ```
 >>> let quadratic := 3x^2 + 9x - 3
@@ -30,7 +28,7 @@ A declaration assigns a name to an expression for later use. Declarations begin 
 
 ### Functions
 
-Functions are called as an indentifier followed by arguments within parentheses. There is a set list of predefined functions available for use. 
+Functions are called as an indentifier followed by zero or more arguments within parentheses. There is a set list of predefined functions available for use. 
 
 ```
 >>> diff(my_expr, u)
@@ -40,7 +38,7 @@ Functions are called as an indentifier followed by arguments within parentheses.
 
 ### Variables
 
-As opposed to declared expressions, variables are single-letter indentifiers used to represent arbitrary values. They do not carry additional meaning. If an identifier is not a previously declared expression or function call, it is broken up into single-letter variables.
+As opposed to declared expressions, variables are single-letter indentifiers used to represent arbitrary values. They do not carry inherent meaning. If an identifier is not a previously declared expression or function call, it is broken up into single-letter variables.
 
 ```
 >>> xsin(x) + 9quadratic
@@ -50,7 +48,7 @@ In the above example, "xsin(x)" will parse as a variable "x" multiplied by the f
 
 ### Expressions
 
-An expression is a grouping of one or more terms. An expression can be part of a declaration (as mentioned above), or called on their own. When called, expressions are evaluated and simplified (see below).
+An expression is a grouping of one or more terms. An expression can be part of a declaration, or called on their own. When called on their own, expressions are evaluated and simplified.
 
 ```
 >>> diff(quadratic, x)
