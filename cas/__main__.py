@@ -16,13 +16,15 @@ class ComputerAlegbraSystem(cmd.Cmd):
     def __init__(self, completekey = "tab", stdin = None, stdout = None):
         super().__init__(completekey, stdin, stdout)
 
-        # Storing session context
-        self.decl_names = ["goose"] # Test name
-        self.context = {
-                "func_names": self.func_names,
-                "decl_names": self.decl_names,
-                "all_reserved": self.func_names + self.decl_names
-            }
+        # Dictionary to keep track of user-written saved expressions
+        self.decls = {}
+
+        # Dictionary to keep track of reserved names by type
+        self.names = {
+            "decl": list(self.decls.keys()),
+            "func": self.func_names,
+            "all": list(self.decls.keys()) + self.func_names
+        }
 
     def default(self, line: str) -> None:
         """Run line."""
@@ -46,15 +48,17 @@ class ComputerAlegbraSystem(cmd.Cmd):
             self.printError(error.message, error.column)
             return None
 
+        print(f"TOKENS: {", ".join(list(map(str, tokens)))}")
+
         # Try to parse tokens
         parser = Parser()
         try:
-            ast = parser.parse(tokens, self.context["reserved_ids"])
+            ast = parser.parse(tokens, self.names, self.decls)
         except ParserException as error:
             self.printError(error.message, error.column)
             return None
         
-        print(ast)
+        print(f"AST: {ast}")
 
     def printError(self, message: str, column: int = -1) -> None:
         if column != -1:

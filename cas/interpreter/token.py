@@ -35,11 +35,11 @@ class TokenType(Enum):
 class Token:
     """A representation of an individual token."""
 
-    def __init__(self, type: TokenType, text: str):
+    def __init__(self, type: TokenType, text: str) -> None:
         self.type = type
         self.text = text
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         if self.type in [TokenType.IDENTIFIER, TokenType.NUMBER]:
             return f"({self.type.name}: {self.text})"
         return f"({self.type.name})"
