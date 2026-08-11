@@ -1,19 +1,6 @@
 from cas.interpreter.token import Token, TokenType
-from cas.interpreter.ast_nodes import Stmt, Decl, Expr, Add, Mult, Pow, Call, Var, Num, Float, Rational, Int
+from cas.interpreter.nodes import Stmt, Decl, Expr, Add, Mult, Pow, Call, Var, Num, Float, Rational, Int
 from cas.exceptions import ParserException
-
-"""
-stmt    :=  decl | expr
-decl    :=  "let" ID ":=" expr
-expr    :=  add
-add     :=  mult { ( "+" | "-" ) mult }
-mult    :=  pow { ( "*" | "/" ) pow }
-pow     :=  unary [ "^" pow ]
-unary   :=  [ "-" ] atom
-atom    :=  call | NUMBER | var | "(" expr ")"
-var     :=  CHAR
-call    :=  ID "(" [ expr  { "," expr } ] ")"
-"""
 
 
 class Parser:
@@ -240,4 +227,4 @@ class Parser:
 
 
 if __name__ == "__main__":
-    parser = Parser()
+    pass
