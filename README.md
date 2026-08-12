@@ -2,7 +2,7 @@
 
 ## Description
 
-This computer algebra system isd a command line REPL that allows for basic symbolic manipulation. I implemented it mainly for learning's sake. The implementation includes:
+This computer algebra system is a command line REPL that allows for basic symbolic manipulation. The implementation includes:
 
 - Recursive descent parser
 - Simplification
@@ -12,7 +12,6 @@ This computer algebra system isd a command line REPL that allows for basic symbo
 
 Each of line of input must either be an expression or a declaration.
 Expressions are evaluated immediately whereas declared objects can be called later on.
-Later, support might be added for equation declaration and manipulation.
 
 ### Declarations
 
