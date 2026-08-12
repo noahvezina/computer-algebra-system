@@ -1,5 +1,5 @@
 from cas.interpreter.token import Token, TokenType
-from cas.interpreter.nodes import Stmt, Decl, Expr, Add, Mult, Pow, Call, Var, Num, Float, Rational, Int
+from cas.interpreter.nodes import Stmt, Decl, Expr, Add, Mult, Pow, Call, Var, Float, Int
 from cas.exceptions import ParserException
 
 
