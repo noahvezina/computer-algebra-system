@@ -13,7 +13,7 @@ class Decl(Stmt):
         self.expr = expr
 
     def __repr__(self) -> str:
-        return f"Decl({self.name}, {self.expr})"
+        return f"Decl({self.name} => {self.expr})"
 
 class Expr(Stmt, ABC):
     """A base class for all things that can be in an expression."""
