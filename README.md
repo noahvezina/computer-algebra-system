@@ -2,16 +2,12 @@
 
 ## Description
 
-This computer algebra system is a command line REPL that allows for basic symbolic manipulation. The implementation includes:
-
-- Recursive descent parser
-- Simplification
-- Differentiation
+This computer algebra system is a command line REPL that allows for reallly basic symbolic manipulation. The implementation includes a recursive descent parser, expression simplification, and differentiation.
 
 ## Syntax
 
 Each of line of input must either be an expression or a declaration.
-Expressions are evaluated immediately whereas declared objects can be called later on.
+Expressions are evaluated immediately whereas declared expressions can be called later on.
 
 ### Declarations
 
@@ -47,7 +43,7 @@ In the above example, "xsin(x)" will parse as a variable "x" multiplied by the f
 
 ### Expressions
 
-An expression is a grouping of one or more terms. An expression can be part of a declaration, or called on their own. When called on their own, expressions are evaluated and simplified.
+An expression is a grouping of one or more terms. An expression can be part of a declaration, or called on their own. When called on their own, expressions are evaluated and automatically simplified.
 
 ```
 >>> diff(quadratic, x)
