@@ -92,7 +92,7 @@ class Parser:
 
         while self._match(TokenType.PLUS, TokenType.MINUS):
             if self._previous().type == TokenType.MINUS:
-                terms.append(Mult(Int("-1"), self._mult()))
+                terms.append(self._mult(negative=True))
             else:
                 terms.append(self._mult())
 
@@ -100,26 +100,30 @@ class Parser:
             return Add(expr, *terms)
         return expr
 
-    def _mult(self) -> Expr:
+    def _mult(self, negative: bool = False) -> Expr:
         """Get multiplication expression. Handles implicit multiplication."""
         expr = self._pow()
         factors = []
 
         while self._match(TokenType.STAR, TokenType.SLASH, TokenType.IMPLICIT):
             if self._previous().type == TokenType.SLASH:
-                factors.append(Mult(Int("-1"), self._pow()))
+                factors.append(self._pow(negative=True))
             else:
                 factors.append(self._pow())
 
+        if factors and negative:
+            return Mult(expr, *factors, Int("-1"))
         if factors:
             return Mult(expr, *factors)
         return expr
 
-    def _pow(self) -> Expr:
+    def _pow(self, negative: bool = False) -> Expr:
         """Get power expression."""
         expr = self._unary()
         if self._match(TokenType.CARAT):
-            return Pow(expr, self._pow())
+            return Pow(expr, self._pow(negative))
+        elif negative:
+            return Mult(Int("-1"), expr)
         return expr
 
     def _unary(self) -> Expr:
