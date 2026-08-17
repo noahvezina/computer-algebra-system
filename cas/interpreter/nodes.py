@@ -88,7 +88,7 @@ class Var(Expr):
         self.symbol = symbol
 
     def __repr__(self) -> str:
-        return f"Var({self.symbol})"
+        return f"{self.symbol}"
 
 
 class Num(Expr):
@@ -108,7 +108,14 @@ class Float(Num):
         self.value = float(value)
 
     def __repr__(self) -> str:
-        return f"Float({self.value})"
+        return f"{self.value}"
+
+    def __add__(self, other: Int) -> Int:
+        return Int(str(self.value + other.value))
+    
+    def __sub__(self, other: Int) -> Int:
+        return Int(str(self.value - other.value))
+    
 
 class Rational(Num):
     """A rational number."""
@@ -130,10 +137,16 @@ class Int(Rational):
     __match_args__ = ("value",)
 
     def __init__(self, value: str) -> None:
-        self.value = value
+        self.value = int(value)
 
     def __repr__(self) -> str:
-        return f"Int({self.value})"
+        return f"{self.value}"
+
+    def __add__(self, other: Int) -> Int:
+        return Int(str(self.value + other.value))
+
+    def __sub__(self, other: Int) -> Int:
+            return Int(str(self.value - other.value))
 
 
 class Const(Expr):
