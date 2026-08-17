@@ -2,7 +2,7 @@
 
 ## Description
 
-This computer algebra system is a command line REPL that allows for reallly basic symbolic manipulation. The implementation includes a recursive descent parser, expression simplification, and differentiation.
+This computer algebra system is a command line REPL that allows for reallly basic symbolic manipulation of polynomials. The implementation includes a recursive descent parser, expression simplification, and differentiation.
 
 ## Syntax
 
@@ -27,8 +27,6 @@ Functions are called as an indentifier followed by zero or more arguments within
 
 ```
 >>> diff(my_expr, u)
->>> cos(sin(x))
->>> sqrt(b^2 - 4ac)
 ```
 
 ### Variables
@@ -36,7 +34,7 @@ Functions are called as an indentifier followed by zero or more arguments within
 As opposed to declared expressions, variables are single-letter indentifiers used to represent arbitrary values. They do not carry inherent meaning. If an identifier is not a previously declared expression or function call, it is broken up into single-letter variables.
 
 ```
->>> xsin(x) + 9quadratic
+>>> xdiff(x) + 9quadratic
 ```
 
 In the above example, "xsin(x)" will parse as a variable "x" multiplied by the function call "sin(x)". Similarly, "9quadratic" will parse as 9 multiplied by the saved expression "quadratic"
