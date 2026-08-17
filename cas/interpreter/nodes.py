@@ -27,7 +27,7 @@ class Expr(Stmt, ABC):
 class Add(Expr):
     """An n-ary addition operator."""
 
-    __match_args__ = ("terms")
+    __match_args__ = ("terms",)
 
     def __init__(self, *terms: Expr) -> None:
         super().__init__()
@@ -40,7 +40,7 @@ class Add(Expr):
 class Mult(Expr):
     """An n-ary multiplication operator."""
 
-    __match_args__ = ("factors")
+    __match_args__ = ("factors",)
 
     def __init__(self, *factors: Expr) -> None:
         super().__init__()
@@ -81,7 +81,7 @@ class Call(Expr):
 class Var(Expr):
     """A single-letter variable."""
 
-    __match_args__ = ("symbol")
+    __match_args__ = ("symbol",)
 
     def __init__(self, symbol: str) -> None:
         super().__init__()
@@ -101,7 +101,7 @@ class Num(Expr):
 class Float(Num):
     """A floating point number."""
 
-    __match_args__ = ("value")
+    __match_args__ = ("value",)
 
     def __init__(self, value: str) -> None:
         super().__init__()
@@ -127,7 +127,7 @@ class Rational(Num):
 class Int(Rational):
     """An integer number."""
 
-    __match_args__ = ("value")
+    __match_args__ = ("value",)
 
     def __init__(self, value: str) -> None:
         self.value = value
@@ -139,7 +139,7 @@ class Int(Rational):
 class Const(Expr):
     """A constant expression."""
 
-    __match_args__ = ("name")
+    __match_args__ = ("name",)
 
     def __init__(self, name):
         self.name = name
