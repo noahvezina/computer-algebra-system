@@ -7,12 +7,12 @@ funcs = {"diff": diff}
 def evaluate(ast: Stmt, decls: dict) -> Expr:
     """Evaluate an abstract syntax tree."""
     match ast:
-        case Decl(name, expr):  
+        case Decl(name, expr):
             result = evaluate(expr, decls)
-            decls[name] = result
+            decls[name.text] = result
             return result
         case Call(name, args):
-          return funcs[name](*args)    
+            return funcs[name](*args)
         case Call(name, []):
             return funcs[name]()
         case _:
