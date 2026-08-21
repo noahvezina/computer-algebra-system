@@ -2,7 +2,7 @@
 
 ## Description
 
-This computer algebra system is a command line REPL that allows for reallly basic symbolic manipulation of polynomials. The implementation includes a recursive descent parser, expression simplification, and differentiation.
+This is a command line REPL that allows for crude symbolic manipulation of polynomials. The implementation includes a recursive descent parser, (some) expression simplification, and single variable differentiation.
 
 ## Syntax
 
