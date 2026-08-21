@@ -2,7 +2,7 @@
 
 ## Description
 
-This is a command line REPL that allows for crude symbolic manipulation of polynomials. The implementation includes a recursive descent parser, (some) expression simplification, and single variable differentiation.
+This is a command line REPL that allows for crude symbolic manipulation of polynomials. The implementation includes a recursive descent parser, and single variable differentiation.
 
 ## Syntax
 
