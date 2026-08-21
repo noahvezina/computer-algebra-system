@@ -17,6 +17,7 @@ class Decl(Stmt):
     def __repr__(self) -> str:
         return f"Decl({self.name} => {self.expr})"
 
+
 class Expr(Stmt, ABC):
     """A base class for all things that can be in an expression."""
 
@@ -112,10 +113,10 @@ class Float(Num):
 
     def __add__(self, other: Int) -> Int:
         return Int(str(self.value + other.value))
-    
+
     def __sub__(self, other: Int) -> Int:
         return Int(str(self.value - other.value))
-    
+
 
 class Rational(Num):
     """A rational number."""
@@ -146,7 +147,7 @@ class Int(Rational):
         return Int(str(self.value + other.value))
 
     def __sub__(self, other: Int) -> Int:
-            return Int(str(self.value - other.value))
+        return Int(str(self.value - other.value))
 
 
 class Const(Expr):
