@@ -76,7 +76,7 @@ class Parser:
 
     def _decl(self) -> Decl:
         """Get declaration statement."""
-        name = self._consume(TokenType.IDENTIFIER, "Declarations require a name!")
+        name = self._consume(TokenType.IDENTIFIER, "Declarations require a name beginning with a letter!")
         self._consume(TokenType.COLON_EQUALS, 'Declarations require the ":=" operator!')
         expr = self._expr()
         return Decl(name, expr)
